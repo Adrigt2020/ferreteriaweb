@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferretería El Tornillo</title>
+  <style>
+    /* ── Reset & Variables ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amarillo:  #f5a623;
+      --naranja:   #e07b00;
+      --gris-osc:  #2b2b2b;
+      --gris-med:  #555555;
+      --gris-cla:  #f4f4f4;
+      --blanco:    #ffffff;
+      --sombra:    0 4px 16px rgba(0,0,0,.12);
+      --radio:     10px;
+      --transicion: .25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--gris-osc);
+      background: var(--blanco);
+      line-height: 1.6;
+    }
+
+    /* ── Navegación ──────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--gris-osc);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .75rem 2rem;
+      box-shadow: var(--sombra);
+    }
+
+    .nav-logo {
+      color: var(--amarillo);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+
+    .nav-logo::before { content: "🔧"; font-size: 1.4rem; }
+
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+
+    .nav-links a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: .95rem;
+      font-weight: 500;
+      transition: color var(--transicion);
+    }
+
+    .nav-links a:hover { color: var(--amarillo); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--blanco);
+      border-radius: 3px;
+    }
+
+    /* ── Hero ────────────────────────────────────────── */
+    #inicio {
+      background: linear-gradient(135deg, var(--gris-osc) 0%, #444 100%);
+      color: var(--blanco);
+      text-align: center;
+      padding: 6rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #inicio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(245,166,35,.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(245,166,35,.10) 0%, transparent 50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: .5rem;
+      display: block;
+      animation: girar 6s linear infinite;
+    }
+
+    @keyframes girar {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    #inicio h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      color: var(--amarillo);
+      letter-spacing: -1px;
+      margin-bottom: .4rem;
+    }
+
+    .eslogan {
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      color: #ddd;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .horario-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.4);
+      border-radius: 50px;
+      padding: .55rem 1.4rem;
+      color: var(--amarillo);
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--amarillo);
+      color: var(--gris-osc);
+      padding: .75rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background var(--transicion), transform var(--transicion);
+    }
+
+    .btn-cta:hover {
+      background: var(--naranja);
+      color: var(--blanco);
+      transform: translateY(-2px);
+    }
+
+    /* ── Secciones ───────────────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+    section:nth-child(even) { background: var(--gris-cla); }
+
+    .seccion-titulo { text-align: center; margin-bottom: 2.8rem; }
+
+    .seccion-titulo h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--gris-osc);
+      display: inline-block;
+    }
+
+    .seccion-titulo h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 4px;
+      background: var(--amarillo);
+      border-radius: 4px;
+      margin: .4rem auto 0;
+    }
+
+    .seccion-titulo p { color: var(--gris-med); margin-top: .6rem; }
+
+    /* ── Tarjetas ────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--sombra);
+      border-top: 4px solid var(--amarillo);
+      transition: transform var(--transicion), box-shadow var(--transicion);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.16);
+    }
+
+    .card-icono { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+    .card p  { font-size: .9rem; color: var(--gris-med); }
+
+    /* ── Ubicación ───────────────────────────────────── */
+    .ubicacion-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .ubicacion-info { flex: 1 1 260px; }
+
+    .dato {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .dato-icono { font-size: 1.6rem; flex-shrink: 0; }
+    .dato-texto strong { display: block; font-weight: 700; }
+    .dato-texto span   { color: var(--gris-med); font-size: .95rem; }
+
+    .mapa-placeholder {
+      flex: 1 1 260px;
+      height: 200px;
+      border-radius: var(--radio);
+      background: linear-gradient(135deg, #ddd, #bbb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--gris-med);
+      gap: .5rem;
+      box-shadow: var(--sombra);
+      font-size: .9rem;
+    }
+
+    .mapa-placeholder span:first-child { font-size: 2.5rem; }
+
+    /* ── Formulario ──────────────────────────────────── */
+    #contacto { background: var(--blanco); }
+
+    form {
+      max-width: 540px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .campo { display: flex; flex-direction: column; gap: .35rem; }
+
+    label { font-weight: 600; font-size: .9rem; }
+
+    input[type="text"],
+    textarea {
+      padding: .7rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: var(--radio);
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color var(--transicion), box-shadow var(--transicion);
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--amarillo);
+      box-shadow: 0 0 0 3px rgba(245,166,35,.2);
+    }
+
+    input.error, textarea.error {
+      border-color: #e05252;
+      box-shadow: 0 0 0 3px rgba(224,82,82,.15);
+    }
+
+    .mensaje-error { color: #c0392b; font-size: .82rem; min-height: 1.1em; }
+
+    .btn-enviar {
+      background: var(--amarillo);
+      color: var(--gris-osc);
+      border: none;
+      padding: .8rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transicion), transform var(--transicion);
+      align-self: flex-start;
+    }
+
+    .btn-enviar:hover {
+      background: var(--naranja);
+      color: var(--blanco);
+      transform: translateY(-2px);
+    }
+
+    .alerta-exito {
+      display: none;
+      align-items: center;
+      gap: .7rem;
+      background: #eafaf1;
+      border: 1.5px solid #27ae60;
+      border-radius: var(--radio);
+      padding: 1rem 1.2rem;
+      color: #1e8449;
+      font-weight: 600;
+      font-size: .95rem;
+      max-width: 540px;
+      margin: 0 auto 1rem;
+    }
+
+    .alerta-exito.visible {
+      display: flex;
+      animation: fadeIn .4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      background: var(--gris-osc);
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: .85rem;
+    }
+
+    footer span { color: var(--amarillo); }
+
+    /* ── Mobile ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: .75rem 1.2rem; }
+      .hamburger { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--gris-osc);
+        padding: .5rem 0 1rem;
+        box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      }
+
+      .nav-links.abierto { display: flex; }
+
+      .nav-links a {
+        display: block;
+        padding: .7rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+
+      .btn-enviar { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">El Tornillo</a>
+  <button class="hamburger" aria-label="Menú" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- INICIO -->
+<section id="inicio">
+  <div class="hero-content">
+    <span class="hero-icon">⚙️</span>
+    <h1>Ferretería El Tornillo</h1>
+    <p class="eslogan">«Todo lo que necesitas para construir, reparar y crear.»</p>
+    <div class="horario-badge">🕗 &nbsp; Lun – Sáb &nbsp;|&nbsp; 8:00 a.m. – 6:00 p.m.</div>
+    <br />
+    <a href="#productos" class="btn-cta">Ver productos ↓</a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="seccion-titulo">
+    <h2>Nuestros Productos</h2>
+    <p>Calidad garantizada en cada categoría</p>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icono">🔨</span>
+      <h3>Herramientas</h3>
+      <p>Martillos, destornilladores, llaves, taladros y todo lo que necesita el profesional o el aficionado.</p>
+    </div>
+    <div class="card">
+      <span class="card-icono">🎨</span>
+      <h3>Pintura</h3>
+      <p>Pinturas, esmaltes, selladores y brochas de las mejores marcas para interiores y exteriores.</p>
+    </div>
+    <div class="card">
+      <span class="card-icono">🔩</span>
+      <h3>Tornillería</h3>
+      <p>Tornillos, tuercas, pernos, arandelas y anclajes en todos los calibres y materiales.</p>
+    </div>
+    <div class="card">
+      <span class="card-icono">⚡</span>
+      <h3>Material Eléctrico</h3>
+      <p>Cables, interruptores, tomacorrientes, breakers y accesorios para instalaciones seguras.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="seccion-titulo">
+    <h2>¿Dónde estamos?</h2>
+    <p>Ven a visitarnos, te atenderemos con gusto</p>
+  </div>
+
+  <div class="ubicacion-wrapper">
+    <div class="ubicacion-info">
+      <div class="dato">
+        <span class="dato-icono">📍</span>
+        <div class="dato-texto">
+          <strong>Dirección</strong>
+          <span>Calle 10 #23-45, Barrio Los Pinos</span>
+        </div>
+      </div>
+      <div class="dato">
+        <span class="dato-icono">🕗</span>
+        <div class="dato-texto">
+          <strong>Horario de atención</strong>
+          <span>Lunes a Sábado: 8:00 a.m. – 6:00 p.m.</span>
+        </div>
+      </div>
+      <div class="dato">
+        <span class="dato-icono">📞</span>
+        <div class="dato-texto">
+          <strong>Teléfono</strong>
+          <span>(000) 000-0000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mapa-placeholder">
+      <span>🗺️</span>
+      <span>Calle 10 #23-45</span>
+      <span>Barrio Los Pinos</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="seccion-titulo">
+    <h2>Contáctanos</h2>
+    <p>Déjanos tu mensaje y te responderemos pronto</p>
+  </div>
+
+  <div class="alerta-exito" id="alertaExito">
+    ✅ &nbsp; ¡Mensaje enviado! Nos pondremos en contacto contigo pronto.
+  </div>
+
+  <form id="formContacto" novalidate>
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Tu nombre completo"
+        autocomplete="name"
+      />
+      <span class="mensaje-error" id="errorNombre"></span>
+    </div>
+
+    <div class="campo">
+      <label for="mensaje">Mensaje</label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        rows="5"
+        placeholder="Cuéntanos en qué te podemos ayudar..."
+      ></textarea>
+      <span class="mensaje-error" id="errorMensaje"></span>
+    </div>
+
+    <button type="submit" class="btn-enviar">Enviar mensaje →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Ferretería El Tornillo</span> · Calle 10 #23-45, Barrio Los Pinos · Hecho con ❤️</p>
+</footer>
+
+<script>
+  /* Menú hamburguesa */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('abierto');
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('abierto'));
+  });
+
+  /* Validación del formulario */
+  const form         = document.getElementById('formContacto');
+  const inputNombre  = document.getElementById('nombre');
+  const inputMensaje = document.getElementById('mensaje');
+  const errorNombre  = document.getElementById('errorNombre');
+  const errorMensaje = document.getElementById('errorMensaje');
+  const alertaExito  = document.getElementById('alertaExito');
+
+  function limpiarError(campo, errorEl) {
+    campo.classList.remove('error');
+    errorEl.textContent = '';
+  }
+
+  function mostrarError(campo, errorEl, msg) {
+    campo.classList.add('error');
+    errorEl.textContent = msg;
+    campo.focus();
+  }
+
+  function validar() {
+    let valido = true;
+
+    const nombre = inputNombre.value.trim();
+    if (nombre.length < 2) {
+      mostrarError(
+        inputNombre, errorNombre,
+        nombre.length === 0
+          ? '⚠ El nombre es obligatorio.'
+          : '⚠ El nombre debe tener al menos 2 caracteres.'
+      );
+      valido = false;
+    } else {
+      limpiarError(inputNombre, errorNombre);
+    }
+
+    const mensaje = inputMensaje.value.trim();
+    if (mensaje.length === 0) {
+      mostrarError(inputMensaje, errorMensaje, '⚠ Por favor escribe tu mensaje.');
+      if (valido) valido = false;
+    } else {
+      limpiarError(inputMensaje, errorMensaje);
+    }
+
+    return valido;
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    alertaExito.classList.remove('visible');
+
+    if (validar()) {
+      form.reset();
+      limpiarError(inputNombre,  errorNombre);
+      limpiarError(inputMensaje, errorMensaje);
+      alertaExito.classList.add('visible');
+      alertaExito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+
+  inputNombre.addEventListener('input', () => {
+    if (inputNombre.value.trim().length >= 2) limpiarError(inputNombre, errorNombre);
+  });
+
+  inputMensaje.addEventListener('input', () => {
+    if (inputMensaje.value.trim().length > 0) limpiarError(inputMensaje, errorMensaje);
+  });
+</script>
+
+</body>
+</html>
