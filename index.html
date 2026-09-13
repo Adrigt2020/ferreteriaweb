@@ -1,70 +1,134 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ferretería El Tornillo</title>
+  <title>Ferretería Central - Soluciones Industriales y del Hogar</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    /* ── Reset & Variables ───────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── RESET & VARIABLES ───────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --amarillo:  #f5a623;
-      --naranja:   #e07b00;
-      --gris-osc:  #2b2b2b;
-      --gris-med:  #555555;
-      --gris-cla:  #f4f4f4;
-      --blanco:    #ffffff;
-      --sombra:    0 4px 16px rgba(0,0,0,.12);
-      --radio:     10px;
-      --transicion: .25s ease;
+      --primary: #FF6B00;       /* Naranja industrial vibrante */
+      --primary-hover: #E05D00;
+      --secondary: #1E293B;     /* Azul/Gris oscuro moderno */
+      --bg-dark: #0F172A;
+      --bg-light: #F8FAFC;
+      --surface: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+      --whatsapp-green: #25D366;
+      --whatsapp-hover: #20BA5A;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 32px rgba(15, 23, 42, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: var(--gris-osc);
-      background: var(--blanco);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-light);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ── Navegación ──────────────────────────────────── */
-    nav {
+    /* ── NAVEGACIÓN ──────────────────────────────────── */
+    .header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--gris-osc);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: .75rem 2rem;
-      box-shadow: var(--sombra);
     }
 
-    .nav-logo {
-      color: var(--amarillo);
-      font-size: 1.3rem;
-      font-weight: 700;
-      text-decoration: none;
+    .brand-logo {
       display: flex;
       align-items: center;
-      gap: .45rem;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
-    .nav-logo::before { content: "🔧"; font-size: 1.4rem; }
+    .brand-logo .logo-icon {
+      background: var(--primary);
+      color: #FFFFFF;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
+    }
 
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+    .brand-logo span span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
 
     .nav-links a {
-      color: var(--blanco);
+      color: #94A3B8;
       text-decoration: none;
-      font-size: .95rem;
       font-weight: 500;
-      transition: color var(--transicion);
+      font-size: 0.95rem;
+      transition: var(--transition);
     }
 
-    .nav-links a:hover { color: var(--amarillo); }
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .btn-contact-nav {
+      background: var(--primary);
+      color: #FFFFFF !important;
+      padding: 0.6rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(255, 107, 0, 0.3);
+    }
+
+    .btn-contact-nav:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
 
     .hamburger {
       display: none;
@@ -73,538 +137,988 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 3px;
-      background: var(--blanco);
-      border-radius: 3px;
+      padding: 5px;
     }
 
-    /* ── Hero ────────────────────────────────────────── */
-    #inicio {
-      background: linear-gradient(135deg, var(--gris-osc) 0%, #444 100%);
-      color: var(--blanco);
-      text-align: center;
-      padding: 6rem 1.5rem 5rem;
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ── HERO SECTION ────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.96) 100%), 
+                  url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #FFFFFF;
+      padding: 5rem 1.5rem 6rem;
       position: relative;
       overflow: hidden;
     }
 
-    #inicio::before {
-      content: "";
+    .hero::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(245,166,35,.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 30%, rgba(245,166,35,.10) 0%, transparent 50%);
+      top: -100px;
+      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 107, 0, 0.25) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
-    .hero-content { position: relative; z-index: 1; }
-
-    .hero-icon {
-      font-size: 4rem;
-      margin-bottom: .5rem;
-      display: block;
-      animation: girar 6s linear infinite;
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
     }
 
-    @keyframes girar {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    #inicio h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
       font-weight: 800;
-      color: var(--amarillo);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
       letter-spacing: -1px;
-      margin-bottom: .4rem;
     }
 
-    .eslogan {
-      font-size: clamp(1rem, 3vw, 1.35rem);
-      color: #ddd;
+    .hero-text h1 span {
+      background: linear-gradient(90deg, #FF6B00 0%, #FFA048 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      color: #CBD5E1;
       margin-bottom: 2rem;
-      font-style: italic;
+      max-width: 500px;
     }
 
-    .horario-badge {
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
-      background: rgba(245,166,35,.15);
-      border: 1px solid rgba(245,166,35,.4);
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
       border-radius: 50px;
-      padding: .55rem 1.4rem;
-      color: var(--amarillo);
-      font-size: .95rem;
+      font-size: 0.88rem;
+      color: #F1F5F9;
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1rem;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(255, 107, 0, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(255, 107, 0, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    /* ── FOTO DE PERSONAS EN LA PARTE FRONTAL ─────── */
+    .hero-image-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.9) 100%);
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .overlay-text h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .overlay-text p {
+      font-size: 0.85rem;
+      color: #CBD5E1;
+      margin: 0;
+    }
+
+    .overlay-badge {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
+    }
+
+    /* ── SECCIONES GENERALES ─────────────────────────── */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      background: rgba(255, 107, 0, 0.1);
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--secondary);
+      letter-spacing: -0.5px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── TARJETAS DE 8 PRODUCTOS EN CATÁLOGO ────────── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 107, 0, 0.3);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .product-badge.sale {
+      background: #EF4444; /* Rojo oferta */
+    }
+
+    .product-badge.green {
+      background: #10B981; /* Verde nuevo */
+    }
+
+    .product-image-wrapper {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: #F1F5F9;
+    }
+
+    .product-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .product-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .product-description {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .product-price-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
       font-weight: 600;
     }
 
-    .btn-cta {
-      display: inline-block;
-      margin-top: 2rem;
-      background: var(--amarillo);
-      color: var(--gris-osc);
-      padding: .75rem 2.2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: background var(--transicion), transform var(--transicion);
-    }
-
-    .btn-cta:hover {
-      background: var(--naranja);
-      color: var(--blanco);
-      transform: translateY(-2px);
-    }
-
-    /* ── Secciones ───────────────────────────────────── */
-    section { padding: 5rem 1.5rem; }
-    section:nth-child(even) { background: var(--gris-cla); }
-
-    .seccion-titulo { text-align: center; margin-bottom: 2.8rem; }
-
-    .seccion-titulo h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+    .product-price {
+      font-size: 1.4rem;
       font-weight: 800;
-      color: var(--gris-osc);
-      display: inline-block;
+      color: var(--secondary);
     }
 
-    .seccion-titulo h2::after {
-      content: "";
-      display: block;
-      width: 60%;
-      height: 4px;
-      background: var(--amarillo);
-      border-radius: 4px;
-      margin: .4rem auto 0;
-    }
-
-    .seccion-titulo p { color: var(--gris-med); margin-top: .6rem; }
-
-    /* ── Tarjetas ────────────────────────────────────── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: var(--blanco);
-      border-radius: var(--radio);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: var(--sombra);
-      border-top: 4px solid var(--amarillo);
-      transition: transform var(--transicion), box-shadow var(--transicion);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 28px rgba(0,0,0,.16);
-    }
-
-    .card-icono { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
-    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
-    .card p  { font-size: .9rem; color: var(--gris-med); }
-
-    /* ── Ubicación ───────────────────────────────────── */
-    .ubicacion-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
+    .btn-buy-wa {
+      display: inline-flex;
       align-items: center;
-      max-width: 800px;
-      margin: 0 auto;
+      gap: 0.4rem;
+      background: var(--whatsapp-green);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
     }
 
-    .ubicacion-info { flex: 1 1 260px; }
+    .btn-buy-wa:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+    }
 
-    .dato {
+    /* ── UBICACIÓN Y CONTACTO ────────────────────────── */
+    .info-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-card {
+      background: var(--bg-light);
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+    }
+
+    .contact-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+
+    .info-item {
       display: flex;
-      align-items: flex-start;
-      gap: .8rem;
+      gap: 1rem;
       margin-bottom: 1.2rem;
     }
 
-    .dato-icono { font-size: 1.6rem; flex-shrink: 0; }
-    .dato-texto strong { display: block; font-weight: 700; }
-    .dato-texto span   { color: var(--gris-med); font-size: .95rem; }
-
-    .mapa-placeholder {
-      flex: 1 1 260px;
-      height: 200px;
-      border-radius: var(--radio);
-      background: linear-gradient(135deg, #ddd, #bbb);
+    .info-icon {
+      background: rgba(255, 107, 0, 0.1);
+      color: var(--primary);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: var(--gris-med);
-      gap: .5rem;
-      box-shadow: var(--sombra);
-      font-size: .9rem;
+      font-size: 1.3rem;
+      flex-shrink: 0;
     }
 
-    .mapa-placeholder span:first-child { font-size: 2.5rem; }
+    .info-detail strong {
+      display: block;
+      color: var(--secondary);
+      font-weight: 600;
+    }
 
-    /* ── Formulario ──────────────────────────────────── */
-    #contacto { background: var(--blanco); }
+    .info-detail span {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
 
-    form {
-      max-width: 540px;
-      margin: 0 auto;
+    .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.2rem;
     }
 
-    .campo { display: flex; flex-direction: column; gap: .35rem; }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
 
-    label { font-weight: 600; font-size: .9rem; }
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
 
-    input[type="text"],
-    textarea {
-      padding: .7rem 1rem;
-      border: 2px solid #ddd;
-      border-radius: var(--radio);
-      font-size: 1rem;
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
       font-family: inherit;
-      resize: vertical;
-      transition: border-color var(--transicion), box-shadow var(--transicion);
+      font-size: 0.95rem;
+      background: var(--surface);
+      transition: var(--transition);
     }
 
-    input[type="text"]:focus,
-    textarea:focus {
+    .form-group input:focus,
+    .form-group textarea:focus {
       outline: none;
-      border-color: var(--amarillo);
-      box-shadow: 0 0 0 3px rgba(245,166,35,.2);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
     }
 
-    input.error, textarea.error {
-      border-color: #e05252;
-      box-shadow: 0 0 0 3px rgba(224,82,82,.15);
-    }
-
-    .mensaje-error { color: #c0392b; font-size: .82rem; min-height: 1.1em; }
-
-    .btn-enviar {
-      background: var(--amarillo);
-      color: var(--gris-osc);
+    .btn-submit {
+      background: var(--secondary);
+      color: #FFFFFF;
       border: none;
-      padding: .8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: var(--radius-md);
       font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background var(--transicion), transform var(--transicion);
-      align-self: flex-start;
+      transition: var(--transition);
+      margin-top: 0.5rem;
     }
 
-    .btn-enviar:hover {
-      background: var(--naranja);
-      color: var(--blanco);
+    .btn-submit:hover {
+      background: var(--bg-dark);
       transform: translateY(-2px);
     }
 
-    .alerta-exito {
-      display: none;
-      align-items: center;
-      gap: .7rem;
-      background: #eafaf1;
-      border: 1.5px solid #27ae60;
-      border-radius: var(--radio);
-      padding: 1rem 1.2rem;
-      color: #1e8449;
-      font-weight: 600;
-      font-size: .95rem;
-      max-width: 540px;
-      margin: 0 auto 1rem;
-    }
-
-    .alerta-exito.visible {
-      display: flex;
-      animation: fadeIn .4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Footer ──────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────── */
     footer {
-      background: var(--gris-osc);
-      color: #aaa;
+      background: var(--bg-dark);
+      color: #94A3B8;
       text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: .85rem;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    footer span { color: var(--amarillo); }
+    footer strong {
+      color: #FFFFFF;
+    }
 
-    /* ── Mobile ──────────────────────────────────────── */
-    @media (max-width: 640px) {
-      nav { padding: .75rem 1.2rem; }
-      .hamburger { display: flex; }
+    /* ── BOTÓN FLOATING WHATSAPP ─────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--whatsapp-green);
+      color: #FFFFFF;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: var(--transition);
+      animation: pulse-green 2s infinite;
+    }
 
+    .whatsapp-float:hover {
+      background-color: var(--whatsapp-hover);
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 34px;
+      height: 34px;
+      fill: currentColor;
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 72px;
+      background: var(--secondary);
+      color: #FFFFFF;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: var(--shadow-md);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: var(--transition);
+    }
+
+    .whatsapp-float:hover .whatsapp-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @keyframes pulse-green {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* ── ADAPTABILIDAD MÓVIL ─────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: 0 auto 2rem;
+      }
+
+      .hero-badges {
+        justify-content: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-image-card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
       .nav-links {
         display: none;
-        flex-direction: column;
-        gap: 0;
         position: absolute;
-        top: 56px;
+        top: 100%;
         left: 0;
         right: 0;
-        background: var(--gris-osc);
-        padding: .5rem 0 1rem;
-        box-shadow: 0 6px 16px rgba(0,0,0,.25);
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      .nav-links.abierto { display: flex; }
-
-      .nav-links a {
-        display: block;
-        padding: .7rem 2rem;
-        border-bottom: 1px solid rgba(255,255,255,.06);
+      .nav-links.active {
+        display: flex;
       }
 
-      .btn-enviar { width: 100%; text-align: center; }
+      .hamburger {
+        display: flex;
+      }
+
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 54px;
+        height: 54px;
+      }
+      
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- NAVEGACIÓN -->
-<nav>
-  <a href="#inicio" class="nav-logo">El Tornillo</a>
-  <button class="hamburger" aria-label="Menú" id="hamburger">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#productos">Productos</a></li>
-    <li><a href="#ubicacion">Ubicación</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-</nav>
+  <!-- NAVEGACIÓN -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#inicio" class="brand-logo">
+        <div class="logo-icon">🛠️</div>
+        <span>Ferretería <span>Central</span></span>
+      </a>
 
-<!-- INICIO -->
-<section id="inicio">
-  <div class="hero-content">
-    <span class="hero-icon">⚙️</span>
-    <h1>Ferretería El Tornillo</h1>
-    <p class="eslogan">«Todo lo que necesitas para construir, reparar y crear.»</p>
-    <div class="horario-badge">🕗 &nbsp; Lun – Sáb &nbsp;|&nbsp; 8:00 a.m. – 6:00 p.m.</div>
-    <br />
-    <a href="#productos" class="btn-cta">Ver productos ↓</a>
-  </div>
-</section>
+      <button class="hamburger" id="hamburger" aria-label="Abrir Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<!-- PRODUCTOS -->
-<section id="productos">
-  <div class="seccion-titulo">
-    <h2>Nuestros Productos</h2>
-    <p>Calidad garantizada en cada categoría</p>
-  </div>
-
-  <div class="cards-grid">
-    <div class="card">
-      <span class="card-icono">🔨</span>
-      <h3>Herramientas</h3>
-      <p>Martillos, destornilladores, llaves, taladros y todo lo que necesita el profesional o el aficionado.</p>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Catálogo de Ofertas</a></li>
+        <li><a href="#contacto">Contacto & Ubicación</a></li>
+        <li><a href="#contacto" class="btn-contact-nav">Cotizar Ahora</a></li>
+      </ul>
     </div>
-    <div class="card">
-      <span class="card-icono">🎨</span>
-      <h3>Pintura</h3>
-      <p>Pinturas, esmaltes, selladores y brochas de las mejores marcas para interiores y exteriores.</p>
-    </div>
-    <div class="card">
-      <span class="card-icono">🔩</span>
-      <h3>Tornillería</h3>
-      <p>Tornillos, tuercas, pernos, arandelas y anclajes en todos los calibres y materiales.</p>
-    </div>
-    <div class="card">
-      <span class="card-icono">⚡</span>
-      <h3>Material Eléctrico</h3>
-      <p>Cables, interruptores, tomacorrientes, breakers y accesorios para instalaciones seguras.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- UBICACIÓN -->
-<section id="ubicacion">
-  <div class="seccion-titulo">
-    <h2>¿Dónde estamos?</h2>
-    <p>Ven a visitarnos, te atenderemos con gusto</p>
-  </div>
+  <!-- HERO SECTION CON FOTO DE PERSONAS -->
+  <section id="inicio" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Tu Aliado en <span>Construcción</span> y Reformas</h1>
+        <p>En <strong>Ferretería Central</strong> nuestro equipo de especialistas te asesora de forma personalizada con las mejores marcas del mercado.</p>
+        
+        <div class="hero-badges">
+          <div class="badge">✓ Envíos inmediatos</div>
+          <div class="badge">✓ Asesoría personalizada</div>
+          <div class="badge">✓ Garantía total</div>
+        </div>
 
-  <div class="ubicacion-wrapper">
-    <div class="ubicacion-info">
-      <div class="dato">
-        <span class="dato-icono">📍</span>
-        <div class="dato-texto">
-          <strong>Dirección</strong>
-          <span>Calle 10 #23-45, Barrio Los Pinos</span>
+        <div class="hero-actions">
+          <a href="#productos" class="btn-primary">
+            Ver Productos <span>↓</span>
+          </a>
+          <a href="https://wa.me/573000000000?text=Hola%20Ferretería%20Central,%20deseo%20más%20información" target="_blank" class="btn-secondary">
+            Contacto Directo
+          </a>
         </div>
       </div>
-      <div class="dato">
-        <span class="dato-icono">🕗</span>
-        <div class="dato-texto">
-          <strong>Horario de atención</strong>
-          <span>Lunes a Sábado: 8:00 a.m. – 6:00 p.m.</span>
-        </div>
-      </div>
-      <div class="dato">
-        <span class="dato-icono">📞</span>
-        <div class="dato-texto">
-          <strong>Teléfono</strong>
-          <span>(000) 000-0000</span>
+
+      <!-- Tarjeta frontal con imagen de personas en la ferretería -->
+      <div class="hero-image-card">
+        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1000&q=80" alt="Atención al cliente en Ferretería Central">
+        <div class="hero-image-overlay">
+          <div class="overlay-text">
+            <h4>Atención Experta</h4>
+            <p>Listos para ayudarte en cada proyecto</p>
+          </div>
+          <span class="overlay-badge">Abierto Hoy</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="mapa-placeholder">
-      <span>🗺️</span>
-      <span>Calle 10 #23-45</span>
-      <span>Barrio Los Pinos</span>
+  <!-- SECCIÓN CATÁLOGO AMPLIADO (8 PRODUCTOS) -->
+  <section id="productos">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Catálogo Completo</span>
+        <h2>Catálogo de Ofertas y Herramientas</h2>
+        <p>Herramientas y materiales profesionales con la mejor garantía y mejores precios.</p>
+      </div>
+
+      <div class="products-grid">
+        
+        <!-- Producto 1 -->
+        <article class="product-card">
+          <span class="product-badge">Más Vendido</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=80" alt="Taladro Inalámbrico 20V Max">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Herramientas Eléctricas</span>
+            <h3 class="product-title">Taladro Inalámbrico 20V Max</h3>
+            <p class="product-description">
+              Incluye 2 baterías de litio, cargador rápido y maletín reforzado.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$289.900</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20el%20Taladro%20Inalámbrico%2020V" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 2 -->
+        <article class="product-card">
+          <span class="product-badge sale">Oferta 25%</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1581147036324-c17ac41dfa6c?auto=format&fit=crop&w=800&q=80" alt="Juego de Herramientas 108 Pzs">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Kits y Mecánica</span>
+            <h3 class="product-title">Juego de Herramientas 108 Pzs</h3>
+            <p class="product-description">
+              Set profesional en cromo vanadio con rachets, copas y alicates.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$175.000</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20el%20Juego%20de%20Herramientas%20108Pzs" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 3 -->
+        <article class="product-card">
+          <span class="product-badge sale">30% OFF</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=800&q=80" alt="Esmeriladora / Pulidora 4-1/2 850W">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Maquinaria & Corte</span>
+            <h3 class="product-title">Esmeriladora / Pulidora 850W</h3>
+            <p class="product-description">
+              Motor de alta resistencia para corte y desbaste en metal y concreto.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$142.000</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20la%20Esmeriladora%20850W" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 4 -->
+        <article class="product-card">
+          <span class="product-badge">Promoción</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80" alt="Pintura Acrílica Lavable 5 Galones">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Pintura & Acabados</span>
+            <h3 class="product-title">Pintura Acrílica Tipo 1 (5 Gal)</h3>
+            <p class="product-description">
+              Pintura lavable de alta cobertura para interiores y exteriores.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$198.500</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20la%20Pintura%20Acrílica%205Gal" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 5 -->
+        <article class="product-card">
+          <span class="product-badge sale">Liquidación</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=800&q=80" alt="Caja de Herramientas Profesional 20 Pulgadas">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Almacenamiento</span>
+            <h3 class="product-title">Caja de Herramientas Pro 20"</h3>
+            <p class="product-description">
+              Cierre metálico reforzado con bandeja organizadora removible.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$89.900</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20la%20Caja%20de%20Herramientas%2020in" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 6 -->
+        <article class="product-card">
+          <span class="product-badge green">Nuevo</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" alt="Compresor de Aire 24 Litros 2HP">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Neumática & Equipos</span>
+            <h3 class="product-title">Compresor de Aire 24L 2HP</h3>
+            <p class="product-description">
+              Tanque de 24 litros, motor monofásico de alto flujo para talleres.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$450.000</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20el%20Compresor%20de%20Aire%2024L" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 7 -->
+        <article class="product-card">
+          <span class="product-badge">Top Ventas</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=800&q=80" alt="Juego de Llaves Combinadas 12 Pzs">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Herramientas Manuales</span>
+            <h3 class="product-title">Juego de Llaves Combinadas</h3>
+            <p class="product-description">
+              Set de 12 piezas (8mm a 19mm) en estuche organizador portátil.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio</span>
+                <span class="product-price">$65.000</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20el%20Juego%20de%20Llaves%20Combinadas" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 8 -->
+        <article class="product-card">
+          <span class="product-badge sale">Pack Ahorro</span>
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1508873696983-2df5057d225b?auto=format&fit=crop&w=800&q=80" alt="Discos de Corte para Metal Pack x10">
+          </div>
+          <div class="product-content">
+            <span class="product-category">Consumibles</span>
+            <h3 class="product-title">Discos de Corte Metal (Pack x10)</h3>
+            <p class="product-description">
+              Discos de pulidora 4-1/2" extra finos para corte rápido en acero.
+            </p>
+            <div class="product-footer">
+              <div class="product-price-container">
+                <span class="price-label">Precio Pack</span>
+                <span class="product-price">$28.000</span>
+              </div>
+              <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20el%20Pack%20de%20Discos%20de%20Corte" target="_blank" class="btn-buy-wa">
+                <span>Comprar</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACTO -->
-<section id="contacto">
-  <div class="seccion-titulo">
-    <h2>Contáctanos</h2>
-    <p>Déjanos tu mensaje y te responderemos pronto</p>
-  </div>
+  <!-- UBICACIÓN Y CONTACTO -->
+  <section id="contacto" class="info-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Atención y Visitas</span>
+        <h2>Contacto y Ubicación</h2>
+        <p>Estamos listos para brindarte la mejor atención presencial o virtual.</p>
+      </div>
 
-  <div class="alerta-exito" id="alertaExito">
-    ✅ &nbsp; ¡Mensaje enviado! Nos pondremos en contacto contigo pronto.
-  </div>
+      <div class="info-grid">
+        <!-- Información de contacto -->
+        <div class="contact-card">
+          <h3>Ferretería Central</h3>
+          
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-detail">
+              <strong>Dirección Principal</strong>
+              <span>Av. Central #45-18, Zona Industrial</span>
+            </div>
+          </div>
 
-  <form id="formContacto" novalidate>
-    <div class="campo">
-      <label for="nombre">Nombre</label>
-      <input
-        type="text"
-        id="nombre"
-        name="nombre"
-        placeholder="Tu nombre completo"
-        autocomplete="name"
-      />
-      <span class="mensaje-error" id="errorNombre"></span>
+          <div class="info-item">
+            <div class="info-icon">🕒</div>
+            <div class="info-detail">
+              <strong>Horario de Atención</strong>
+              <span>Lun a Sáb: 7:30 a.m. – 6:30 p.m.</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-detail">
+              <strong>Teléfono y Ventas</strong>
+              <span>+57 (601) 555-0199</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="contact-card">
+          <h3>Envíanos un mensaje</h3>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('¡Gracias por comunicarte con Ferretería Central! Te responderemos muy pronto.');">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo</label>
+              <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje o Solicitud</label>
+              <textarea id="mensaje" rows="3" placeholder="Escribe aquí los productos que deseas cotizar..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar Consulta</button>
+          </form>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="campo">
-      <label for="mensaje">Mensaje</label>
-      <textarea
-        id="mensaje"
-        name="mensaje"
-        rows="5"
-        placeholder="Cuéntanos en qué te podemos ayudar..."
-      ></textarea>
-      <span class="mensaje-error" id="errorMensaje"></span>
-    </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 <strong>Ferretería Central</strong>. Todos los derechos reservados. Soluciones integrales para la construcción.</p>
+  </footer>
 
-    <button type="submit" class="btn-enviar">Enviar mensaje →</button>
-  </form>
-</section>
+  <!-- BOTÓN FLOATING VERDE DE WHATSAPP -->
+  <a href="https://wa.me/573000000000?text=Hola%20Ferretería%20Central,%20deseo%20hacer%20una%20consulta" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <span class="whatsapp-tooltip">¡Escríbenos a WhatsApp!</span>
+    <svg viewBox="0 0 32 32">
+      <path d="M16 2A13 13 0 0 0 4.2 21.3L2 29.8l8.7-2.2A12.9 12.9 0 1 0 16 2zm6.6 18.4c-.3.8-1.7 1.5-2.4 1.6-.6.1-1.4.2-4.5-1.1-3.9-1.6-6.4-5.5-6.6-5.7-.2-.3-1.6-2.1-1.6-4.1s1-2.9 1.4-3.3c.4-.4.8-.5 1.1-.5h.8c.3 0 .6 0 .9.7.3.7 1.1 2.6 1.2 2.7.1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.9 1.6 2.2 3.1 3.5 1.9 1.7 3.5 2.2 4 2.4.4.2.7.2.9-.1.3-.3 1-1.2 1.3-1.6.3-.4.6-.3.9-.2.4.1 2.3 1.1 2.7 1.3.4.2.7.3.8.5.1.3.1 1.6-.2 2.4z"/>
+    </svg>
+  </a>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 <span>Ferretería El Tornillo</span> · Calle 10 #23-45, Barrio Los Pinos · Hecho con ❤️</p>
-</footer>
+  <!-- SCRIPT NAVEGACIÓN MÓVIL -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-<script>
-  /* Menú hamburguesa */
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('abierto');
-  });
-
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('abierto'));
-  });
-
-  /* Validación del formulario */
-  const form         = document.getElementById('formContacto');
-  const inputNombre  = document.getElementById('nombre');
-  const inputMensaje = document.getElementById('mensaje');
-  const errorNombre  = document.getElementById('errorNombre');
-  const errorMensaje = document.getElementById('errorMensaje');
-  const alertaExito  = document.getElementById('alertaExito');
-
-  function limpiarError(campo, errorEl) {
-    campo.classList.remove('error');
-    errorEl.textContent = '';
-  }
-
-  function mostrarError(campo, errorEl, msg) {
-    campo.classList.add('error');
-    errorEl.textContent = msg;
-    campo.focus();
-  }
-
-  function validar() {
-    let valido = true;
-
-    const nombre = inputNombre.value.trim();
-    if (nombre.length < 2) {
-      mostrarError(
-        inputNombre, errorNombre,
-        nombre.length === 0
-          ? '⚠ El nombre es obligatorio.'
-          : '⚠ El nombre debe tener al menos 2 caracteres.'
-      );
-      valido = false;
-    } else {
-      limpiarError(inputNombre, errorNombre);
-    }
-
-    const mensaje = inputMensaje.value.trim();
-    if (mensaje.length === 0) {
-      mostrarError(inputMensaje, errorMensaje, '⚠ Por favor escribe tu mensaje.');
-      if (valido) valido = false;
-    } else {
-      limpiarError(inputMensaje, errorMensaje);
-    }
-
-    return valido;
-  }
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    alertaExito.classList.remove('visible');
-
-    if (validar()) {
-      form.reset();
-      limpiarError(inputNombre,  errorNombre);
-      limpiarError(inputMensaje, errorMensaje);
-      alertaExito.classList.add('visible');
-      alertaExito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  });
-
-  inputNombre.addEventListener('input', () => {
-    if (inputNombre.value.trim().length >= 2) limpiarError(inputNombre, errorNombre);
-  });
-
-  inputMensaje.addEventListener('input', () => {
-    if (inputMensaje.value.trim().length > 0) limpiarError(inputMensaje, errorMensaje);
-  });
-</script>
-
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
